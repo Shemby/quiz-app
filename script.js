@@ -19,8 +19,7 @@ function quizInit(){
 //html for the menu
 function menu(){
     return `
-        <h1>Welcome to the quiz</h1>
-        <h2>When you play the game of thrones, you win or you die.</h2>
+        <h2 class='greeting'>Get ready to test your knowledge </br> of the world of ice and fire!</h2>
         <button class='start'>Begin</button>
     `;
 }
@@ -49,43 +48,45 @@ function renderQuestions(){
 }
 
 function displayQuestions(){
-    
     $('.display').html(renderQuestions);
     $('.choices').html(renderChoices);
     $('.stats').html(stats);
     $('.commit').on('click', submitAnswer);
+
+    
 }
 
 //function to display answer choices
 function renderChoices(){
     return `
     <form class='question-form'>
-    <ul>
-        <li>
-            <input type='radio' value='0' class='choice' name='selection' required/>
-            ${questions[currentQuestion].choices[0]}
-        </li>
-        <li>
-            <input type='radio' value='1' class='choice' name='selection' required/>
-            ${questions[currentQuestion].choices[1]}
-        </li>
-        <li>
-            <input type='radio' value='2' class='choice' name='selection' required/>
-            ${questions[currentQuestion].choices[2]}
-        </li>
-        <li>
-            <input type='radio' value='3' class='choice' name='selection' required/>
-            ${questions[currentQuestion].choices[3]}
-        </li>
-    </ul>
+    <fieldset>
+    <label class='choice'>
+    <input type='radio' value='${questions[currentQuestion].choices[0]}' name='answer' required>
+    <span>${questions[currentQuestion].choices[0]}</span>
+    </label>
+    <label class='choice'>
+    <input type='radio' value='${questions[currentQuestion].choices[1]}' name='answer' required>
+    <span>${questions[currentQuestion].choices[1]}</span>
+    </label>
+    <label class='choice'>
+    <input type='radio' value='${questions[currentQuestion].choices[2]}' name='answer' required>
+    <span>${questions[currentQuestion].choices[2]}</span>
+    </label>
+    <label class='choice'>
+    <input type='radio' value='${questions[currentQuestion].choices[3]}' name='answer' required>
+    <span>${questions[currentQuestion].choices[3]}</span>
+    </label>
+    <button type='sumbit' class='commit'>Submit</button>
+    </fieldset>
     </form>
-    <button class='commit' type='sumbit'>Commit</button>
     `;
 }
 
 //function to move to the next question
 function nextQuestion(){
     $('.next').hide();
+    $('.results').hide();
 
     if(currentQuestion < questions.length-1)
     {
@@ -104,23 +105,49 @@ function nextQuestion(){
 //function to handle submitting answers.
 function submitAnswer(event){
     event.preventDefault();
+    $('.results').show();
     $('.commit').prop('disabled', true);
     $('.next').prop('disabled', false);
     let evaluation;
 //getting a variable that contains the string of the correct answer
     let questionCurrent = questions[currentQuestion];
     let rightAnswer = questionCurrent.answer;
-    let correctAnswer = questionCurrent.choices[rightAnswer];
 
 //checking the right answer against the selected answer
-    if ($('.choice:checked').val() == rightAnswer){
+    if ($('input:checked').val() == rightAnswer){
         currentScore++;
-        evaluation = '<p>Correct</p>';
-    }else{
-        evaluation = `<p>Incorrect. The correct answer is: 
-        "${correctAnswer}"</p>`;
+        userCorrrectAnswer();
     }
-//displaying whether the user got the question right or wrong.
-    $('.results').html(`${evaluation}<button class='next' >Continue</button>`);
-    $('.next').click(nextQuestion);
+    else{
+       userWrongAnswer();
+    }
+
+}
+
+function userCorrrectAnswer() {
+  $('.display').html(`
+    <div class='correctFeedback'>
+        <h2>'That is correct!'</h2>
+        <img class='correcto' src='http://images5.fanpop.com/image/photos/24500000/1x02-The-Kingsroad-tyrion-lannister-24546620-1280-720.jpg'/>
+        <button class='next'>Next Question</button>
+    </div>
+  `);
+  $('.choices').html("");
+  $('.stats').html("");
+  $('.results').html("");
+  $('.next').on('click', nextQuestion);
+}
+
+function userWrongAnswer() {
+    $('.display').html(`
+    <div class='incorrectFeedback'>
+        <h2>'You chose poorly...'</h2>
+        <img class='wrongo' src='https://hips.hearstapps.com/mac.h-cdn.co/assets/17/34/1503507203-1503473449-jon-snow-dead.jpg'/>
+        <button class='next'>Next Question</button>
+    </div>
+    `);
+   $('.choices').html("");
+   $('.stats').html("");
+   $('.results').html("");
+   $('.next').on('click', nextQuestion);
 }
