@@ -8,7 +8,7 @@ const questions =[
     },
     {
         text: 'What is the name of the ancestral home of the Starks?',
-        choices: ['Casterly Rock', 'Snow Place', 'Winterfell', 'High Garden'],
+        choices: ['Casterly Rock', 'Snow Place', 'Winterfell', 'Harrenhal'],
         answer: 'Winterfell'
     },
     {
