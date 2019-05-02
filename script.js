@@ -24,39 +24,45 @@ function menu(){
     `;
 }
 
-//placeholder for current score and questions
+//display for current score and current question
 function stats(){
     return `
-    <label>current question: ${currentQuestion+1}</label>
-    <label>current score: ${currentScore}</label>
+    <label class='cq'>Current Question: ${currentQuestion+1}</label>
+    <label class='score'>Current Score: ${currentScore}</label>
     `;
 }
 
 //placeholder for the results page
 function results(){
     return `
-    <h1>your score is ${currentScore}/5</h1>
+    <h1 class='report'>your score is ${currentScore}/5</h1>
     <button class='restart'>play again?</button>
     `;
 }
 
-//functions to display questions
+//function to put questions in an html header
 function renderQuestions(){
     return `
-        <h1>${questions[currentQuestion].text}</h1>
+        <h1 class='prompt'>${questions[currentQuestion].text}</h1>
     `;
 }
 
+//function to display question with choices and stats
 function displayQuestions(){
     $('.display').html(renderQuestions);
     $('.choices').html(renderChoices);
     $('.stats').html(stats);
+//enables submit button after choice is made
+    $('input').click(function(){
+        $('.commit').removeAttr('disabled','disabled');
+    });
+//sets up the submit button to evaluate answer
     $('.commit').on('click', submitAnswer);
 
     
 }
 
-//function to display answer choices
+//function to convert answer choices into html
 function renderChoices(){
     return `
     <form class='question-form'>
@@ -77,7 +83,9 @@ function renderChoices(){
     <input type='radio' value='${questions[currentQuestion].choices[3]}' name='answer' required>
     <span>${questions[currentQuestion].choices[3]}</span>
     </label>
-    <button type='sumbit' class='commit'>Submit</button>
+    <div class='buttonHolder'>
+    <button type='sumbit' disabled class='commit'>Submit</button>
+    </div>
     </fieldset>
     </form>
     `;
@@ -93,6 +101,7 @@ function nextQuestion(){
     currentQuestion++;
     displayQuestions();
     }
+    //sends user to results page when quiz is over.
     else{ 
     $('.display').html(results);
     $('.choices').html("");
@@ -113,7 +122,7 @@ function submitAnswer(event){
     let questionCurrent = questions[currentQuestion];
     let rightAnswer = questionCurrent.answer;
 
-//checking the right answer against the selected answer
+//checking the right answer against the selected answer and then displaying feedback
     if ($('input:checked').val() == rightAnswer){
         currentScore++;
         userCorrrectAnswer();
@@ -124,10 +133,11 @@ function submitAnswer(event){
 
 }
 
+//displays feedback on correct answer submitted
 function userCorrrectAnswer() {
   $('.display').html(`
     <div class='correctFeedback'>
-        <h2>'That is correct!'</h2>
+        <h2 class='happy'>'That is correct!'</h2>
         <img class='correcto' src='http://images5.fanpop.com/image/photos/24500000/1x02-The-Kingsroad-tyrion-lannister-24546620-1280-720.jpg'/>
         <button class='next'>Next Question</button>
     </div>
@@ -138,10 +148,13 @@ function userCorrrectAnswer() {
   $('.next').on('click', nextQuestion);
 }
 
+//displays feedback on incorrect answer submitted
 function userWrongAnswer() {
+    let questionCurrent = questions[currentQuestion];
+    let rightAnswer = questionCurrent.answer;
     $('.display').html(`
     <div class='incorrectFeedback'>
-        <h2>'You chose poorly...'</h2>
+        <h2 class='sad'>'You chose poorly... the correct answer was ${rightAnswer}.'</h2>
         <img class='wrongo' src='https://hips.hearstapps.com/mac.h-cdn.co/assets/17/34/1503507203-1503473449-jon-snow-dead.jpg'/>
         <button class='next'>Next Question</button>
     </div>
