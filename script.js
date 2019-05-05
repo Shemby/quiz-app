@@ -40,17 +40,9 @@ function results(){
     `;
 }
 
-//function to put questions in an html header
-function renderQuestions(){
-    return `
-        <h1 class='prompt'>${questions[currentQuestion].text}</h1>
-    `;
-}
-
 //function to display question with choices and stats
 function displayQuestions(){
     $('.display').html(renderQuestions);
-    $('.choices').html(renderChoices);
     $('.stats').html(stats);
 //enables submit button after choice is made
     $('input').click(function(){
@@ -63,9 +55,12 @@ function displayQuestions(){
 }
 
 //function to convert answer choices into html
-function renderChoices(){
+function renderQuestions(){
     return `
     <form class='question-form'>
+    <legend>
+    <h1 class='prompt'>${questions[currentQuestion].text}</h1>
+    </legend>
     <fieldset>
     <label class='choice'>
     <input type='radio' value='${questions[currentQuestion].choices[0]}' name='answer' required>
@@ -104,7 +99,6 @@ function nextQuestion(){
     //sends user to results page when quiz is over.
     else{ 
     $('.display').html(results);
-    $('.choices').html("");
     $('.stats').html("");
     $('.results').html("");
     $('.restart').click(quizInit);
