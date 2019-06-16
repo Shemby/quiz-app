@@ -19,8 +19,10 @@ function quizInit(){
 //html for the menu
 function menu(){
     return `
-        <h2 class='greeting'>Get ready to test your knowledge </br> of the world of ice and fire!</h2>
+        <div class='menu'>
+        <h2 class='heading'>Test your knowledge of JavaScript!</h2>
         <button class='start'>Begin</button>
+        </div>
     `;
 }
 
@@ -35,7 +37,7 @@ function stats(){
 //placeholder for the results page
 function results(){
     return `
-    <h1 class='report'>your score is ${currentScore}/5</h1>
+    <h1 class='heading'>your score is ${currentScore}/6</h1>
     <button class='restart'>play again?</button>
     `;
 }
@@ -58,30 +60,38 @@ function displayQuestions(){
 function renderQuestions(){
     return `
     <form class='question-form'>
-    <legend>
-    <h1 class='prompt'>${questions[currentQuestion].text}</h1>
-    </legend>
-    <fieldset>
-    <label class='choice'>
-    <input type='radio' value='${questions[currentQuestion].choices[0]}' name='answer' required>
-    <span>${questions[currentQuestion].choices[0]}</span>
-    </label>
-    <label class='choice'>
-    <input type='radio' value='${questions[currentQuestion].choices[1]}' name='answer' required>
-    <span>${questions[currentQuestion].choices[1]}</span>
-    </label>
-    <label class='choice'>
-    <input type='radio' value='${questions[currentQuestion].choices[2]}' name='answer' required>
-    <span>${questions[currentQuestion].choices[2]}</span>
-    </label>
-    <label class='choice'>
-    <input type='radio' value='${questions[currentQuestion].choices[3]}' name='answer' required>
-    <span>${questions[currentQuestion].choices[3]}</span>
-    </label>
-    <div class='buttonHolder'>
-    <button type='sumbit' disabled class='commit'>Submit</button>
-    </div>
-    </fieldset>
+        <legend>
+            <h1 class='heading'>${questions[currentQuestion].text}</h1>
+        </legend>
+        <fieldset>
+            <label class='choice'>
+                <input type='radio' value='${questions[currentQuestion].choices[0]}' name='answer' required>
+                <p class='prefix'>A</p>
+                <p class='selection'>${questions[currentQuestion].choices[0]}</p>
+            </label>
+
+            <label class='choice'>
+                <input type='radio' value='${questions[currentQuestion].choices[1]}' name='answer' required>
+                <p class='prefix'>B</p>
+                <p class='selection'>${questions[currentQuestion].choices[1]}</p>
+            </label>
+
+            <label class='choice'>
+                <input type='radio' value='${questions[currentQuestion].choices[2]}' name='answer' required>
+                <p class='prefix'>C</p>
+                <p class='selection'>${questions[currentQuestion].choices[2]}</p>
+            </label>
+
+            <label class='choice'>
+                <input type='radio' value='${questions[currentQuestion].choices[3]}' name='answer' required>
+                <p class='prefix'>D</p>
+                <p class='selection'>${questions[currentQuestion].choices[3]}</p>
+            </label>
+
+            <div class='buttonHolder'>
+                <button type='sumbit' disabled class='commit'>Submit</button>
+            </div>
+        </fieldset>
     </form>
     `;
 }
@@ -111,7 +121,6 @@ function submitAnswer(event){
     $('.results').show();
     $('.commit').prop('disabled', true);
     $('.next').prop('disabled', false);
-    let evaluation;
 //getting a variable that contains the string of the correct answer
     let questionCurrent = questions[currentQuestion];
     let rightAnswer = questionCurrent.answer;
@@ -130,16 +139,15 @@ function submitAnswer(event){
 //displays feedback on correct answer submitted
 function userCorrrectAnswer() {
   $('.display').html(`
-    <div class='correctFeedback'>
-        <h2 class='happy'>'That is correct!'</h2>
-        <img class='correcto' src='http://images5.fanpop.com/image/photos/24500000/1x02-The-Kingsroad-tyrion-lannister-24546620-1280-720.jpg'/>
-        <button class='next'>Next Question</button>
+    <div class='feedback'>
+        <h2 class='heading'>Correct!</h2>
+        <button class='heading' id='next'>Next Question</button>
     </div>
   `);
   $('.choices').html("");
   $('.stats').html("");
   $('.results').html("");
-  $('.next').on('click', nextQuestion);
+  $('#next').on('click', nextQuestion);
 }
 
 //displays feedback on incorrect answer submitted
@@ -147,14 +155,13 @@ function userWrongAnswer() {
     let questionCurrent = questions[currentQuestion];
     let rightAnswer = questionCurrent.answer;
     $('.display').html(`
-    <div class='incorrectFeedback'>
-        <h2 class='sad'>'You chose poorly... the correct answer was ${rightAnswer}.'</h2>
-        <img class='wrongo' src='https://hips.hearstapps.com/mac.h-cdn.co/assets/17/34/1503507203-1503473449-jon-snow-dead.jpg'/>
-        <button class='next'>Next Question</button>
+    <div class='feedback'>
+        <h1 class='heading'>Sorry, the correct answer was:</br></br> '${rightAnswer}'</h1>
+        <button class='heading' id='next'>next</button>
     </div>
     `);
    $('.choices').html("");
    $('.stats').html("");
    $('.results').html("");
-   $('.next').on('click', nextQuestion);
+   $('#next').on('click', nextQuestion);
 }

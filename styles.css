@@ -1,208 +1,124 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    text-decoration: none;
-    list-style-type: none;
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: 'open sans', sans-serif;
+} 
+.heading{
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
 }
-
 body{
-    background-image: url(https://cdn.escapistmagazine.com/media/global/images/library/deriv/56/56743.jpg);
+  margin: auto;
+  padding-top: 20%;
 }
-
-.greeting{
-    font-size: 30px;
-    margin-top: 40px;
+.menu{
+  text-align: center;
+  margin-top: 30%;
+  color: rgb(13, 161, 219);
 }
-
+.menu h2{
+  font-size: 30px;
+}
 .start{
-    margin: 40px;
-}
-
-.container{
-    background-color: rgb(32, 32, 32);
-    height: 700px;
-    width: 40%;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 30px;
-    color: white;
-    box-shadow: 0 10px 30px gold;
-}
-
-h2{
-    font-family: 'Cinzel Decorative', cursive;
-    font-size: 20px;
-}
-
-header {
-    font-family: 'Cinzel Decorative', cursive;
-    font-size: 30px;
-    text-align: center;
-    padding: 50px;
-    color: gold;
-    background-image: url(https://cdn.theculturetrip.com/wp-content/uploads/2016/09/14834104277_e7190beadc_h-e1472693217836.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 300px;
-}
-
-input{
-    opacity: 0;
-}
-
-fieldset {
-    width: 100%;
-    margin: auto;
-}
-
-.buttonHolder{
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-}
-
-form span{
-    display: block;
-    text-align: center;
-    cursor: pointer;
-    background-color: white;
-    color:  rgb(32, 32, 32);
-    font-size: 20px;
-    border-radius: 4px;
-    height: 35px;
-}
-
-form span:hover, form span:focus{
-    background-color: gold;
-}
-
-input:checked + span{ 
-    background-color: gold;
-}
-
-.display{
-    text-align: center;
-}
-
-button{
-    background-color: rgba(0, 0, 0, 0.37);
-    color: white;
-    border: solid white 2px;
-    border-radius: 15px;
-    font-size: 25px;
-    padding: 10px;
-    width: 150px;
-
-
-}
-
-button:hover, button:focus{
-    background-color: white;
-    color: rgb(32, 32, 32);
-}
-
-.score {
-    float: right;
-    margin-right: 20px;
-    font-size: 20px;
-}
-
-.cq {
-  float: left;
-  margin-left: 20px;
+  border: 2px solid rgb(13, 161, 219);
+  width: 120px;
+  height: 40px;
   font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  color: rgb(13, 161, 219);
+  cursor: pointer;
+  margin-top: 30px;
 }
-
-.correctFeedback h2{
-    font-size: 30px;
+.start:hover{
+  background-color: gray;
 }
-
-.correctFeedback, .incorrectFeedback{
-    display: flex;
-    margin: 0 auto;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.wrongo, .correcto{
-  height: 200px;
-  width: 400px;
-  margin: 20px;
-}
-
-.report{
-  font-size: 40px;
-  margin: 40px 0 40px 0;
-}
-
-@media screen and (min-width: 0px) and (max-width: 650px){
-  .container{
-    width: 80%;
-  }
-  .greeting{
-    margin-top: 80px;
-    font-size: 14px;
-  }
-
-  .score, .cq{
-    font-size: 15px;
-  }
-
-  .wrongo, .correcto{
-  height: 150px;
+fieldset{
+  display: flex;
+  border: 1px solid rgb(13, 161, 219);
+  border-radius: 10px;
   width: 300px;
+  margin: auto;
+}
+input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.prefix{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(13, 161, 219);
+  color: white;
+}
+.selection{
+  padding-left: 10px;
+}
+.choice{
+  display: flex;
+  margin: 2px;
+  height: 60px;
+  align-items: center;
+  cursor: pointer;
+}
+input:hover ~ .prefix{
+  background-color: gray;
+}
+input:checked ~ .prefix{
+  background-color: gray;
+}
+.commit{
+  border: 1px solid rgb(13, 161, 219);
+  width: 120px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  color: rgb(13, 161, 219);
+  cursor: pointer;
+}
+.commit:hover{
+  background-color: gray;
+}
+.buttonHolder{
   margin: 20px;
-  }
-
-  fieldset span{
-    font-size: 18px;
-  }
-
-.prompt{
-  font-size: 25px;
+  text-align: center;
 }
-
-.report{
-  margin: 30px 0 30px 0;
+.cq{
+  float: left;
 }
-
-.happy, .sad{
-  font-size: 15px;
+.score{
+  float: right;
 }
-
-
+.cq, .score{
+  margin-top: 15px;
+  font-size: 14px;
 }
-
-@media screen and (min-width: 650px) and (max-width: 1000px){
-
-  .container{
-    width: 60%;
-  }
-  .greeting{
-    font-size: 21px;
-    margin-top: 50px;
-  }
-
-  .score, .cq{
-    font-size: 15px;
-  }
-
-  .wrongo, .correcto{
-  height: 175px;
-  width: 350px;
-  margin: 20px;
-  }
-
-  fieldset span{
-    font-size: 18px;
-  }
-
-.prompt{
-  font-size: 25px;
+.feedback{
+  display: block;
+  text-align: center;
+  margin-top: 30%;
+  color: rgb(13, 161, 219);
 }
-
-.report{
-  margin: 30px 0 30px 0;
+#next{
+  border: 1px solid rgb(13, 161, 219);
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  color: rgb(13, 161, 219);
+  cursor: pointer;
+  margin-top: 40px;
 }
+#next:hover{
+  background-color: gray;
 }
