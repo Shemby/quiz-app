@@ -29,16 +29,18 @@ function menu(){
 //display for current score and current question
 function stats(){
     return `
-    <label class='cq'>Current Question: ${currentQuestion+1}</label>
-    <label class='score'>Current Score: ${currentScore}</label>
+    <label class='cq'>Current Question: <span class='outcome'>${currentQuestion+1}</span></label>
+    <label class='score'>Current Score: <span class='outcome'>${currentScore}</span></label>
     `;
 }
 
 //placeholder for the results page
 function results(){
     return `
-    <h1 class='heading'>your score is ${currentScore}/6</h1>
-    <button class='restart'>play again?</button>
+    <div class='resultsWrapper'>
+        <h1 class='heading'>your score is <span class='outcome'>${currentScore}/6</span></h1>
+        <button class='restart'>play again?</button>
+    </div>
     `;
 }
 
@@ -156,7 +158,7 @@ function userWrongAnswer() {
     let rightAnswer = questionCurrent.answer;
     $('.display').html(`
     <div class='feedback'>
-        <h1 class='heading'>Sorry, the correct answer was:</br></br> '${rightAnswer}'</h1>
+        <h1 class='heading'>Sorry, the correct answer was:</br></br>'<span class='outcome'>${rightAnswer}</span>'</h1>
         <button class='heading' id='next'>next</button>
     </div>
     `);

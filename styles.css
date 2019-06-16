@@ -14,24 +14,28 @@
 }
 body{
   margin: auto;
-  padding-top: 20%;
+  margin-top: 20px;
+}
+.container{
+  max-width: 600px;
+  margin: auto;
 }
 .menu{
   text-align: center;
   margin-top: 30%;
-  color: rgb(13, 161, 219);
+  color: rgb(126, 47, 230);
 }
 .menu h2{
   font-size: 30px;
 }
 .start{
-  border: 2px solid rgb(13, 161, 219);
+  border: 2px solid rgb(126, 47, 230);
   width: 120px;
   height: 40px;
   font-size: 20px;
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
-  color: rgb(13, 161, 219);
+  color: rgb(126, 47, 230);
   cursor: pointer;
   margin-top: 30px;
 }
@@ -40,10 +44,11 @@ body{
 }
 fieldset{
   display: flex;
-  border: 1px solid rgb(13, 161, 219);
+  border: 1px solid rgb(126, 47, 230);
   border-radius: 10px;
   width: 300px;
   margin: auto;
+  margin-top: 40px;
 }
 input{
   opacity: 0;
@@ -56,7 +61,7 @@ input{
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: rgb(13, 161, 219);
+  background-color: rgb(126, 47, 230);
   color: white;
 }
 .selection{
@@ -76,49 +81,79 @@ input:checked ~ .prefix{
   background-color: gray;
 }
 .commit{
-  border: 1px solid rgb(13, 161, 219);
+  border: 1px solid rgb(126, 47, 230);
   width: 120px;
   height: 40px;
   font-size: 20px;
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
-  color: rgb(13, 161, 219);
+  color: rgb(126, 47, 230);
   cursor: pointer;
 }
 .commit:hover{
   background-color: gray;
 }
 .buttonHolder{
-  margin: 20px;
   text-align: center;
-}
-.cq{
-  float: left;
-}
-.score{
-  float: right;
+  margin-top: 10px;
 }
 .cq, .score{
   margin-top: 15px;
   font-size: 14px;
 }
+.stats{
+  display: flex;
+  justify-content: space-evenly;
+}
 .feedback{
   display: block;
   text-align: center;
   margin-top: 30%;
-  color: rgb(13, 161, 219);
 }
 #next{
-  border: 1px solid rgb(13, 161, 219);
+  border: 1px solid rgb(126, 47, 230);
   width: 150px;
   height: 40px;
   font-size: 20px;
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
-  color: rgb(13, 161, 219);
+  color: rgb(126, 47, 230);
   cursor: pointer;
   margin-top: 40px;
 }
 #next:hover{
   background-color: gray;
+}
+.outcome{
+  color: rgb(126, 47, 230);
+}
+.results{
+  text-align: center;
+}
+.restart{
+  border: 1px solid rgb(126, 47, 230);
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  color: rgb(126, 47, 230);
+  cursor: pointer;
+  margin-top: 40px;
+}
+.resultsWrapper{
+  text-align: center;
+}
+@media only screen and (min-width: 640px){
+  body{
+    padding-top: 15%;
+  }
+  .feedback{
+    margin-top: 15%;
+  }
+}
+@media only screen and (min-width: 1200px){
+  body{
+    padding-top: 8%;
+  }
 }
