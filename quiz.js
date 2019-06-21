@@ -20,8 +20,10 @@ function quizInit(){
 function menu(){
     return `
         <div class='menu'>
-        <h2 class='heading'>Test your knowledge of JavaScript!</h2>
-        <button class='start'>Begin</button>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png'
+            alt-'javascript logo'>
+            <h2 class='heading'>Test your knowledge of JavaScript!</h2>
+            <button class='start'>Begin</button>
         </div>
     `;
 }
